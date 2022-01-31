@@ -7,31 +7,26 @@
 
 import UIKit
 
-class CreateAccountVC: UIViewController {
+final class CreateAccountVC: UIViewController {
 
-    @IBOutlet weak var viewGreen: UIView!
-    @IBOutlet weak var viewYellow: UIView!
-    @IBOutlet weak var viewOrange: UIView!
-    @IBOutlet weak var viewRed: UIView!
-    @IBOutlet weak var notRightEmail: UILabel!
-    @IBOutlet weak var notRightPassword: UILabel!
-    @IBOutlet weak var noCoincid: UILabel!
-    @IBOutlet weak var enterPassword: UITextField!
-    @IBOutlet weak var enterEmail: UITextField!
-    @IBOutlet weak var confirmPass: UITextField!
-    @IBOutlet weak var sgnUp: UIButton!
+    @IBOutlet private weak var viewGreen: UIView!
+    @IBOutlet private weak var viewYellow: UIView!
+    @IBOutlet private weak var viewOrange: UIView!
+    @IBOutlet private weak var viewRed: UIView!
+    @IBOutlet private weak var notRightEmail: UILabel!
+    @IBOutlet private weak var notRightPassword: UILabel!
+    @IBOutlet private weak var noCoincid: UILabel!
+    @IBOutlet private weak var enterPassword: UITextField!
+    @IBOutlet private weak var enterEmail: UITextField!
+    @IBOutlet private weak var confirmPass: UITextField!
+    @IBOutlet private weak var sgnUp: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewGreen.alpha = 0.3
-        viewYellow.alpha = 0.3
-        viewOrange.alpha = 0.3
-        viewRed.alpha = 0.3
-        sgnUp.isEnabled = false
         setupUi()
     }
 
-    @IBAction func EnterPassword() {
+    @IBAction private func EnterPassword() {
         guard let text = enterPassword.text else { return }
         let verPass = VerificationService.isValidPassword(pass: text)
         switch verPass {
@@ -63,7 +58,7 @@ class CreateAccountVC: UIViewController {
         }
     }
 
-    @IBAction func pressEmail() {
+    @IBAction private func pressEmail() {
         guard let text = enterEmail.text else { return }
         let verEmail = VerificationService.isValidEmail(email: text)
         if verEmail == false {
@@ -71,7 +66,7 @@ class CreateAccountVC: UIViewController {
         } else { notRightEmail.isHidden = true }
     }
 
-    @IBAction func confPass() {
+    @IBAction private func confPass() {
         guard let text = enterPassword.text else { return }
         guard let text1 = confirmPass.text else { return }
         let conPas = VerificationService.isPassCofirm(pass1: text, pass2: text1)
@@ -81,8 +76,13 @@ class CreateAccountVC: UIViewController {
 
     }
 
-    func setupUi() {
+    private func setupUi() {
         sgnUp.layer.cornerRadius = 20
+        viewGreen.alpha = 0.3
+        viewYellow.alpha = 0.3
+        viewOrange.alpha = 0.3
+        viewRed.alpha = 0.3
+        sgnUp.isEnabled = false
     }
 
 }

@@ -7,21 +7,20 @@
 
 import UIKit
 
-class SignInVC: UIViewController {
+final class SignInVC: UIViewController {
 
-    @IBOutlet weak var enterEmail: UITextField!
-    @IBOutlet weak var enterPassword: UITextField!
-    @IBOutlet weak var signIn: UIButton!
-    @IBOutlet weak var userNotFound: UILabel!
+    @IBOutlet private weak var enterEmail: UITextField!
+    @IBOutlet private weak var enterPassword: UITextField!
+    @IBOutlet private weak var signIn: UIButton!
+    @IBOutlet private weak var userNotFound: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        signIn.isEnabled = false
         setupUi()
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func enterEm() {
+    @IBAction private func enterEm() {
         guard let text = enterEmail.text else { return }
         let verEmail = VerificationService.isValidEmail(email: text)
         if verEmail == false {
@@ -29,18 +28,19 @@ class SignInVC: UIViewController {
         } else { userNotFound.isHidden = true }
     }
 
-    @IBAction func enterPass() {
+    @IBAction private func enterPass() {
         guard let text = enterPassword.text else { return }
         if text.count < 8 {
             userNotFound.isHidden = false
         } else { signIn.isEnabled = true; userNotFound.isHidden = true }
     }
 
-    @IBAction func pressSignIn() {
+    @IBAction private func pressSignIn() {
 
     }
-    func setupUi() {
+    private func setupUi() {
         signIn.layer.cornerRadius = 20
+        signIn.isEnabled = false
     }
     /*
     // MARK: - Navigation
