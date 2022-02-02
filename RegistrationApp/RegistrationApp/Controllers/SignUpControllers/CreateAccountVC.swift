@@ -20,12 +20,24 @@ final class CreateAccountVC: UIViewController {
     @IBOutlet private weak var enterEmail: UITextField!
     @IBOutlet private weak var confirmPass: UITextField!
     @IBOutlet private weak var sgnUp: UIButton!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var enterName: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUi()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let email = enterEmail.text,
+            let name = enterName.text,
+            let pass = enterPassword.text,
+            let destVC = segue.destination as? VerifVC else { return }
+
+        destVC.email = email
+        destVC.name = name
+        destVC.pass = pass
+    }
     @IBAction private func EnterPassword() {
         guard let text = enterPassword.text else { return }
         let verPass = VerificationService.isValidPassword(pass: text)
@@ -73,7 +85,14 @@ final class CreateAccountVC: UIViewController {
         if conPas == false {
             noCoincid.isHidden = false
         } else { noCoincid.isHidden = true; sgnUp.isEnabled = true }
+    }
 
+    @IBAction private func tupSignUp() {
+        performSegue(withIdentifier: "showCodeVerVC", sender: nil)
+    }
+
+    @IBAction private func tupSignIn() {
+        navigationController?.popToRootViewController(animated: true)
     }
 
     private func setupUi() {
@@ -85,4 +104,23 @@ final class CreateAccountVC: UIViewController {
         sgnUp.isEnabled = false
     }
 
+    private func startKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateAccountVC.keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateAccountVC.keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc private func keyboardWillShow(notification: Notification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+
+    @objc private func keyboardWillHide() {
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
 }

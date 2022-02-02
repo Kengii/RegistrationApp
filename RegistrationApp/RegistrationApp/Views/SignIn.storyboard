@@ -109,6 +109,7 @@
                         <outlet property="enterPassword" destination="GLS-m0-lTR" id="GHU-Wv-Ae9"/>
                         <outlet property="signIn" destination="UmW-Hp-1in" id="hsd-a4-JQM"/>
                         <outlet property="userNotFound" destination="WhN-5C-K4f" id="xhS-on-hk6"/>
+                        <segue destination="cXZ-bb-eHV" kind="show" identifier="mainVC" id="f1o-VL-6JZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -124,6 +125,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7q-PO-wKi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1473" y="67"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="aUh-IZ-uLL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="cXZ-bb-eHV" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hXK-sa-mYT"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l7S-fJ-69I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1482" y="203"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XVH-xt-xIm">

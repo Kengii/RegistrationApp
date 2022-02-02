@@ -8,7 +8,7 @@
 import UIKit
 
 final class SignInVC: UIViewController {
-
+    
     @IBOutlet private weak var enterEmail: UITextField!
     @IBOutlet private weak var enterPassword: UITextField!
     @IBOutlet private weak var signIn: UIButton!
@@ -19,24 +19,29 @@ final class SignInVC: UIViewController {
         setupUi()
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction private func enterEm() {
         guard let text = enterEmail.text else { return }
-        let verEmail = VerificationService.isValidEmail(email: text)
-        if verEmail == false {
-            userNotFound.isHidden = false
-        } else { userNotFound.isHidden = true }
+        if text != "" {
+            print (345)
+        }
     }
 
     @IBAction private func enterPass() {
         guard let text = enterPassword.text else { return }
-        if text.count < 8 {
-            userNotFound.isHidden = false
-        } else { signIn.isEnabled = true; userNotFound.isHidden = true }
+        if text.count >= 8 {
+            signIn.isEnabled = true
+        }
     }
 
     @IBAction private func pressSignIn() {
-
+        guard let text = enterEmail.text else { return }
+        let email = UserDefaults.standard.string(forKey: "email")
+        guard let text1 = enterPassword.text else { return }
+        let pass = UserDefaults.standard.string(forKey: "email")
+        if text != email, text1 != pass {
+            userNotFound.isHidden = false
+        } else { performSegue(withIdentifier: "mainVC", sender: nil) }
     }
     private func setupUi() {
         signIn.layer.cornerRadius = 20

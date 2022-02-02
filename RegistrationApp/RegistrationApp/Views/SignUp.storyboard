@@ -26,6 +26,9 @@
                                                 <rect key="frame" x="321" y="60" width="68" height="31"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Sign in"/>
+                                                <connections>
+                                                    <action selector="tupSignIn" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kD8-0a-B4q"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create an account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXD-rJ-5Ud">
                                                 <rect key="frame" x="25" y="150" width="280.5" height="106"/>
@@ -216,7 +219,7 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="37"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="anO-8v-lMd" kind="show" id="gYi-1S-xYt"/>
+                                                    <action selector="tupSignUp" destination="Y6W-OH-hqX" eventType="touchUpInside" id="SlI-ua-gtb"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -261,44 +264,47 @@
                     <connections>
                         <outlet property="confirmPass" destination="YoW-7C-Vlq" id="2ga-jc-Me4"/>
                         <outlet property="enterEmail" destination="o6i-cj-7Wv" id="sz7-GD-sfI"/>
+                        <outlet property="enterName" destination="aYf-y3-fsQ" id="CUz-tG-uy6"/>
                         <outlet property="enterPassword" destination="3gI-D7-SpE" id="H70-Ej-tfN"/>
                         <outlet property="noCoincid" destination="kct-Ee-qbo" id="goe-rW-hrI"/>
                         <outlet property="notRightEmail" destination="1pD-G7-vQF" id="w7b-Ac-AXY"/>
                         <outlet property="notRightPassword" destination="Uf9-AS-jpd" id="qcW-tC-AFa"/>
+                        <outlet property="scrollView" destination="pId-GK-57s" id="5WY-4b-ZPI"/>
                         <outlet property="sgnUp" destination="vZq-C9-gA1" id="0sT-Fc-ruh"/>
                         <outlet property="viewGreen" destination="Vnf-Dl-Hw4" id="Ssz-IG-MDW"/>
                         <outlet property="viewOrange" destination="U8v-wU-oxs" id="OkV-yq-gkL"/>
                         <outlet property="viewRed" destination="gx0-dc-fa7" id="D85-aX-E0k"/>
                         <outlet property="viewYellow" destination="mp4-1X-6qf" id="duw-t7-aYA"/>
+                        <segue destination="anO-8v-lMd" kind="show" identifier="showCodeVerVC" id="FM8-C6-pra"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="81.696428571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--VerifVC-->
         <scene sceneID="m8q-Jc-N5T">
             <objects>
-                <viewController id="anO-8v-lMd" sceneMemberID="viewController">
+                <viewController id="anO-8v-lMd" customClass="VerifVC" customModule="RegistrationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AUv-SD-SS2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="6Hk-5i-NhE">
-                                <rect key="frame" x="25" y="349" width="364" height="110"/>
+                                <rect key="frame" x="25" y="374" width="364" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YS1-2A-Rge">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YS1-2A-Rge">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Press Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xNo-vK-1AC">
-                                        <rect key="frame" x="0.0" y="76" width="364" height="34"/>
+                                        <rect key="frame" x="0.0" y="26" width="364" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <segue destination="ycJ-Jv-fMa" kind="show" id="gTO-ku-U3Y"/>
+                                            <action selector="codeTF:" destination="anO-8v-lMd" eventType="editingChanged" id="GlV-6Q-LyJ"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -323,15 +329,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0Qv-8r-9Zo"/>
+                    <connections>
+                        <outlet property="secretCode" destination="YS1-2A-Rge" id="prB-yf-iYx"/>
+                        <segue destination="ycJ-Jv-fMa" kind="show" identifier="showWelcomeVc" id="bKK-HT-erf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44D-Fn-sSj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="696" y="82"/>
         </scene>
-        <!--View Controller-->
+        <!--WelcomeVC-->
         <scene sceneID="8c9-ua-eSz">
             <objects>
-                <viewController id="ycJ-Jv-fMa" sceneMemberID="viewController">
+                <viewController id="ycJ-Jv-fMa" customClass="WelcomeVC" customModule="RegistrationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ya4-BC-vtH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -357,6 +367,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Continue">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="37"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="tupContinue" destination="ycJ-Jv-fMa" eventType="touchUpInside" id="Dvh-XW-Fbb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="btE-hn-BAL"/>
